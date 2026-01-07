@@ -6,11 +6,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "setup:bq": "tsx scripts/setup-bigquery.ts"
+    "setup:bq": "tsx scripts/setup-bigquery.ts",
+    "scrape": "tsx scripts/ltk-scraper.ts",
+    "scrape:api": "tsx scripts/ltk-api-scraper.ts",
+    "scrape:category": "tsx scripts/ltk-api-scraper.ts --category",
+    "scrape:all": "tsx scripts/ltk-api-scraper.ts --all-categories",
+    "scrape:download": "tsx scripts/ltk-api-scraper.ts --download-media",
+    "upload:gcs": "tsx scripts/upload-to-gcs.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.0",
     "@google-cloud/bigquery": "^7.8.0",
+    "@google-cloud/storage": "^7.7.0",
     "next": "^14.2.25",
     "react": "^18",
     "react-dom": "^18"
@@ -20,10 +27,10 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.16",
-    "dotenv": "^17.2.3",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0",
     "dotenv": "^16.3.1",
+    "postcss": "^8.4.32",
+    "puppeteer-core": "^22.0.0",
+    "tailwindcss": "^3.4.0",
     "tsx": "^4.21.0",
     "typescript": "^5.3.3"
   }
