@@ -12,7 +12,7 @@
  *   npx tsx scripts/ltk-api-scraper.ts --download-media
  */
 
-import puppeteer, { Page, Browser, HTTPResponse } from 'puppeteer';
+import puppeteer, { Page, Browser, HTTPResponse } from 'puppeteer-core';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ScrapedPost, LTK_CATEGORIES, LTKCategorySlug } from '../types/ltk';
@@ -400,9 +400,31 @@ async function main() {
   const args = parseArgs();
   CONFIG.headless = args.headless;
 
+  // Find Chrome executable
+  const getChromePath = (): string => {
+    // Check environment variable first (for CI/CD)
+    if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+      return process.env.PUPPETEER_EXECUTABLE_PATH;
+    }
+    // Common Chrome paths
+    const paths = [
+      '/usr/bin/google-chrome-stable',
+      '/usr/bin/google-chrome',
+      '/usr/bin/chromium-browser',
+      '/usr/bin/chromium',
+      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    ];
+    for (const p of paths) {
+      if (fs.existsSync(p)) return p;
+    }
+    throw new Error('Chrome not found. Set PUPPETEER_EXECUTABLE_PATH or install Chrome.');
+  };
+
   // Launch browser
   const browser = await puppeteer.launch({
     headless: CONFIG.headless,
+    executablePath: getChromePath(),
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
 
