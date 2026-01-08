@@ -14,12 +14,14 @@
     "scrape:download": "tsx scripts/ltk-api-scraper.ts --download-media",
     "scrape:detail": "tsx scripts/ltk-detail-scraper.ts",
     "scrape:detail:category": "tsx scripts/ltk-detail-scraper.ts --category",
-    "upload:gcs": "tsx scripts/upload-to-gcs.ts"
+    "upload:gcs": "tsx scripts/upload-to-gcs.ts",
+    "upload:sheets": "tsx scripts/upload-to-sheets.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.0",
     "@google-cloud/bigquery": "^7.8.0",
     "@google-cloud/storage": "^7.7.0",
+    "googleapis": "^144.0.0",
     "next": "^14.2.25",
     "react": "^18",
     "react-dom": "^18"
