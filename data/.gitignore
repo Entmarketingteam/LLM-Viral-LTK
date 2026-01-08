@@ -1,0 +1,8 @@
+# Ignore scraped data files (can be large)
+scraped/*.json
+media/*
+
+# Keep directory structure
+!.gitignore
+!scraped/.gitkeep
+!media/.gitkeep
