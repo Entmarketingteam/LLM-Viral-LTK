@@ -95,15 +95,15 @@ jobs:
           retention-days: 30
 
       - name: Upload to Google Sheets
-        if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL != '' }}
+        continue-on-error: true
         run: npm run upload:sheets
         env:
           GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
           GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
-          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID || '1QHPLOUCOHcJp8GnHk9D2DNEhUq6slMNR-lZa-ffJn_M' }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
 
       - name: Upload to GCS (if configured)
-        if: ${{ secrets.GCP_SA_KEY != '' }}
+        continue-on-error: true
         run: npm run upload:gcs
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
