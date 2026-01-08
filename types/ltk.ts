@@ -101,7 +101,49 @@ export interface ScrapedProductLink {
   brand: string;
   price: number | null;
   url: string;
+  affiliate_url: string; // rstyle.me link
   image_url: string;
+  retailer?: string;
+}
+
+// Detailed post data from individual post pages
+export interface DetailedPost extends ScrapedPost {
+  // Enhanced content
+  full_caption: string;
+  mention_tags: string[]; // @mentions
+
+  // Video details
+  video_duration?: number;
+  video_thumbnail?: string;
+  has_video: boolean;
+
+  // Product details
+  product_count: number;
+  products: DetailedProduct[];
+
+  // Engagement (if available)
+  likes?: number;
+  comments?: number;
+  shares?: number;
+
+  // Share links
+  share_url: string;
+  facebook_share_url?: string;
+  pinterest_share_url?: string;
+  twitter_share_url?: string;
+}
+
+export interface DetailedProduct {
+  id: string;
+  name: string;
+  brand: string;
+  retailer: string;
+  price: number | null;
+  sale_price: number | null;
+  currency: string;
+  affiliate_url: string; // rstyle.me link
+  product_image_url: string;
+  in_stock?: boolean;
 }
 
 // Scraper configuration
