@@ -12,6 +12,8 @@
     "scrape:category": "tsx scripts/ltk-api-scraper.ts --category",
     "scrape:all": "tsx scripts/ltk-api-scraper.ts --all-categories",
     "scrape:download": "tsx scripts/ltk-api-scraper.ts --download-media",
+    "scrape:detail": "tsx scripts/ltk-detail-scraper.ts",
+    "scrape:detail:category": "tsx scripts/ltk-detail-scraper.ts --category",
     "upload:gcs": "tsx scripts/upload-to-gcs.ts"
   },
   "dependencies": {
