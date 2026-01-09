@@ -217,6 +217,7 @@ function transformToScrapedPosts(
         brand: p!.brand || p!.retailer_display_name || '',
         price: p!.price || p!.sale_price || null,
         url: p!.hyperlink || '',
+        affiliate_url: p!.hyperlink || '',  // Same as url for now
         image_url: p!.image_url || '',
       })),
 

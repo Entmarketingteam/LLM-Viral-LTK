@@ -241,6 +241,7 @@ async function fetchPostDetails(postUrl: string): Promise<Partial<ScrapedPost>> 
           brand: product.brand || '',
           price: product.price || null,
           url: product.url || '',
+          affiliate_url: product.url || '',  // Same as url for now
           image_url: product.image || '',
         });
       } catch (e) {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireUser, authError } from '@/lib/auth';
+import { requireUser, getAuthErrorResponse } from '@/lib/auth';
 
 // LTK category mapping
 const LTK_CATEGORIES: Record<string, string> = {
@@ -105,8 +105,11 @@ async function scrapeCategory(categorySlug: string): Promise<ScrapedPost[]> {
  */
 export async function GET(request: NextRequest) {
   // Require authentication
-  const user = await requireUser();
-  if (!user) return authError();
+  try {
+    requireUser();
+  } catch {
+    return getAuthErrorResponse();
+  }
 
   const searchParams = request.nextUrl.searchParams;
   const category = searchParams.get('category') || 'ltkfindsunder50';
@@ -144,8 +147,11 @@ export async function GET(request: NextRequest) {
  * Body: { categories: ['ltkfindsunder50', 'ltkbeauty'] }
  */
 export async function POST(request: NextRequest) {
-  const user = await requireUser();
-  if (!user) return authError();
+  try {
+    requireUser();
+  } catch {
+    return getAuthErrorResponse();
+  }
 
   try {
     const body = await request.json();
