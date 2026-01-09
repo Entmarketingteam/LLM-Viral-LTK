@@ -27,7 +27,7 @@ This file tracks major checkpoints in development. Each checkpoint is a git comm
 
 ---
 
-### ✅ Checkpoint 2: Testing, Mock Data & Worker Skeleton (Current)
+### ✅ Checkpoint 2: Testing, Mock Data & Worker Skeleton
 **Commit:** TBD - "feat: Add testing tools, mock data, frontend components, and analysis worker skeleton"
 
 **What's included:**
@@ -39,11 +39,23 @@ This file tracks major checkpoints in development. Each checkpoint is a git comm
 
 **Status:** Ready for GCP setup to test with real data
 
+### ✅ Checkpoint 3: Cloud Run Deployment (Current)
+**Commit:** TBD - "feat: Cloud Run deployment for analysis worker"
+
+**What's included:**
+- ✅ Cloud Run deployment scripts
+- ✅ Pub/Sub integration
+- ✅ Flask HTTP endpoints
+- ✅ Automated deployment guide
+- ✅ Ingestion API publishes to Pub/Sub
+
+**Status:** Ready to deploy to cloud - no local testing needed
+
 ---
 
 ## Next Checkpoints (Planned)
 
-### 🔄 Checkpoint 3: OpenAPI Documentation
+### 🔄 Checkpoint 4: OpenAPI Documentation
 **Planned features:**
 - Swagger/OpenAPI spec
 - API documentation site
