@@ -19,7 +19,9 @@
     "db:setup-v2": "tsx scripts/setup-v2-schema.ts",
     "db:setup-v2:test": "tsx scripts/setup-v2-schema.ts --test-data",
     "db:verify": "tsx scripts/setup-v2-schema.ts --verify",
-    "db:cleanup-test": "tsx scripts/setup-v2-schema.ts --cleanup"
+    "db:cleanup-test": "tsx scripts/setup-v2-schema.ts --cleanup",
+    "mock:generate": "tsx scripts/generate-mock-data.ts",
+    "test:api": "tsx scripts/test-api.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.0",
