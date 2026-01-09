@@ -39,8 +39,8 @@ This file tracks major checkpoints in development. Each checkpoint is a git comm
 
 **Status:** Ready for GCP setup to test with real data
 
-### ✅ Checkpoint 3: Cloud Run Deployment (Current)
-**Commit:** TBD - "feat: Cloud Run deployment for analysis worker"
+### ✅ Checkpoint 3: Cloud Run Deployment
+**Commit:** `afdcfe7` - "feat: Cloud Run deployment for analysis worker"
 
 **What's included:**
 - ✅ Cloud Run deployment scripts
@@ -49,13 +49,35 @@ This file tracks major checkpoints in development. Each checkpoint is a git comm
 - ✅ Automated deployment guide
 - ✅ Ingestion API publishes to Pub/Sub
 
-**Status:** Ready to deploy to cloud - no local testing needed
+**Status:** Completed
+
+---
+
+### ✅ Checkpoint 4: Full Cloud Deployment (Current)
+**Tag:** `checkpoint-4-cloud-deployed`
+**Commit:** `93bd913` - "Add deployment status documentation"
+
+**What's LIVE:**
+- ✅ **Analysis Worker:** https://analysis-worker-428005848575.us-central1.run.app
+- ✅ **BigQuery:** All tables and views created
+- ✅ **Pub/Sub:** Topic + Push subscription to worker
+- ✅ **GCS Bucket:** `gs://ltk-trending`
+- ✅ All GCP permissions configured
+- ✅ Automated setup scripts
+
+**Status:** 🚀 DEPLOYED AND LIVE
 
 ---
 
 ## Next Checkpoints (Planned)
 
-### 🔄 Checkpoint 4: OpenAPI Documentation
+### 🔄 Checkpoint 5: Vercel Deployment
+**Planned features:**
+- Next.js app deployed to Vercel
+- Environment variables configured
+- Full end-to-end flow working
+
+### 🔄 Checkpoint 6: OpenAPI Documentation
 **Planned features:**
 - Swagger/OpenAPI spec
 - API documentation site
