@@ -21,5 +21,5 @@ COPY src/ ./src/
 # Set Python path
 ENV PYTHONPATH=/app
 
-# Run worker
-CMD ["python3", "src/main.py"]
+# Run with Gunicorn for Cloud Run
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "2", "--timeout", "3600", "src.main:app"]

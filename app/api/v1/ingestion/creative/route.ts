@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { bigquery } from '@/lib/bq';
 import { requireUser, getAuthErrorResponse } from '@/lib/auth';
+import { publishCreativeForAnalysis } from '@/lib/pubsub';
 import { CreateCreativeSchema, CreateCreativeResponse, APIError } from '@/types/api';
 
 const PROJECT_ID = process.env.GOOGLE_PROJECT_ID || 'bolt-ltk-app';
@@ -96,9 +97,9 @@ export async function POST(req: NextRequest) {
       params: row,
     });
 
-    // TODO: Publish to Pub/Sub for analysis worker
-    // For now, we'll just mark as queued
-    const analysisQueued = false; // Will be true when Pub/Sub is set up
+    // Publish to Pub/Sub for analysis worker
+    const messageId = await publishCreativeForAnalysis(data.creative_id, false);
+    const analysisQueued = messageId !== null;
 
     const response: CreateCreativeResponse = {
       creative_id: data.creative_id,

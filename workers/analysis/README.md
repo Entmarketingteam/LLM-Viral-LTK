@@ -62,33 +62,69 @@ PINECONE_INDEX=creative-embeddings
 OPENAI_API_KEY=...  # or ANTHROPIC_API_KEY=...
 ```
 
-## Usage
+## Deployment to Cloud Run
 
-### Run locally
+### Quick Deploy
 
 ```bash
-python src/main.py
+# Set your project ID
+export GOOGLE_PROJECT_ID=your-project-id
+
+# Deploy to Cloud Run
+./deploy.sh
+
+# Set up Pub/Sub
+./setup-pubsub.sh
 ```
 
-### Run with Docker
+### Manual Deploy
 
 ```bash
-docker build -t analysis-worker .
-docker run --gpus all analysis-worker
-```
+# Build and deploy
+gcloud builds submit --tag gcr.io/$PROJECT_ID/analysis-worker
 
-### Deploy to Cloud Run (GPU)
-
-```bash
 gcloud run deploy analysis-worker \
-  --source . \
+  --image gcr.io/$PROJECT_ID/analysis-worker \
   --platform managed \
   --region us-central1 \
   --allow-unauthenticated \
   --memory 8Gi \
   --cpu 4 \
   --gpu 1 \
-  --gpu-type nvidia-t4
+  --gpu-type nvidia-t4 \
+  --timeout 3600 \
+  --max-instances 10 \
+  --min-instances 0
+```
+
+### Set Secrets
+
+```bash
+# Store API keys as secrets
+echo -n "your-pinecone-key" | gcloud secrets create PINECONE_API_KEY --data-file=-
+echo -n "your-openai-key" | gcloud secrets create OPENAI_API_KEY --data-file=-
+
+# Grant Cloud Run access
+gcloud secrets add-iam-policy-binding PINECONE_API_KEY \
+  --member="serviceAccount:PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
+  --role="roles/secretmanager.secretAccessor"
+```
+
+### Test Deployment
+
+```bash
+# Get service URL
+SERVICE_URL=$(gcloud run services describe analysis-worker \
+  --region us-central1 \
+  --format 'value(status.url)')
+
+# Health check
+curl $SERVICE_URL/health
+
+# Test processing
+curl -X POST $SERVICE_URL/process \
+  -H "Content-Type: application/json" \
+  -d '{"creative_id": "test_001"}'
 ```
 
 ## Message Format

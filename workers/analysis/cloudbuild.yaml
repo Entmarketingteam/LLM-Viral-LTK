@@ -1,0 +1,74 @@
+# Cloud Build configuration for Analysis Worker
+# Deploys to Cloud Run with GPU support
+
+steps:
+  # Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/analysis-worker:$COMMIT_SHA'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/analysis-worker:latest'
+      - '-f'
+      - 'workers/analysis/Dockerfile'
+      - '.'
+    id: 'build-image'
+
+  # Push to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/analysis-worker:$COMMIT_SHA'
+    id: 'push-image-sha'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/analysis-worker:latest'
+    id: 'push-image-latest'
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'analysis-worker'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/analysis-worker:$COMMIT_SHA'
+      - '--platform'
+      - 'managed'
+      - '--region'
+      - 'us-central1'
+      - '--allow-unauthenticated'
+      - '--memory'
+      - '8Gi'
+      - '--cpu'
+      - '4'
+      - '--gpu'
+      - '1'
+      - '--gpu-type'
+      - 'nvidia-t4'
+      - '--timeout'
+      - '3600'
+      - '--max-instances'
+      - '10'
+      - '--min-instances'
+      - '0'
+      - '--set-env-vars'
+      - 'GOOGLE_PROJECT_ID=$PROJECT_ID,BIGQUERY_DATASET=creator_pulse,GCS_BUCKET=ltk-trending,PINECONE_API_KEY=${_PINECONE_API_KEY},PINECONE_INDEX=${_PINECONE_INDEX},OPENAI_API_KEY=${_OPENAI_API_KEY}'
+    id: 'deploy-cloud-run'
+
+images:
+  - 'gcr.io/$PROJECT_ID/analysis-worker:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/analysis-worker:latest'
+
+options:
+  machineType: 'E2_HIGHCPU_8'
+  logging: CLOUD_LOGGING_ONLY
+
+substitutions:
+  _PINECONE_API_KEY: ''  # Set in Cloud Build triggers
+  _PINECONE_INDEX: 'creative-embeddings'
+  _OPENAI_API_KEY: ''  # Set in Cloud Build triggers

@@ -2,6 +2,10 @@
 """
 Analysis Worker - Main Entry Point
 
+Supports both:
+1. Cloud Run HTTP endpoint (Pub/Sub push)
+2. Standalone Pub/Sub pull subscriber
+
 Processes creatives through ML pipeline:
 1. Frame extraction
 2. SAM2 segmentation
@@ -13,9 +17,9 @@ Processes creatives through ML pipeline:
 import os
 import json
 import logging
-from typing import Dict, Any
-from google.cloud import pubsub_v1, bigquery, storage
-from google.cloud.exceptions import NotFound
+from typing import Dict, Any, Optional
+from flask import Flask, request, Response
+from google.cloud import bigquery, storage
 
 # Configure logging
 logging.basicConfig(
@@ -28,12 +32,13 @@ logger = logging.getLogger(__name__)
 PROJECT_ID = os.getenv('GOOGLE_PROJECT_ID')
 DATASET_ID = os.getenv('BIGQUERY_DATASET', 'creator_pulse')
 GCS_BUCKET = os.getenv('GCS_BUCKET', 'ltk-trending')
-SUBSCRIPTION_NAME = os.getenv('PUBSUB_SUBSCRIPTION', 'creative-analysis-queue')
 
 # Initialize clients
 bq_client = bigquery.Client(project=PROJECT_ID)
 gcs_client = storage.Client(project=PROJECT_ID)
-subscriber = pubsub_v1.SubscriberClient()
+
+# Flask app for Cloud Run
+app = Flask(__name__)
 
 
 def fetch_creative_metadata(creative_id: str) -> Dict[str, Any]:
@@ -223,7 +228,7 @@ def write_to_bigquery(creative_id: str, vision_features: Dict, annotations: Dict
 
 def write_to_pinecone(creative_id: str, embedding: list[float], metadata: Dict):
     """Write embedding to Pinecone"""
-    from pinecone import Pinecone, ServerlessSpec
+    from pinecone import Pinecone
     
     pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
     index = pc.Index(os.getenv('PINECONE_INDEX', 'creative-embeddings'))
@@ -245,6 +250,20 @@ def process_creative(creative_id: str, force_recompute: bool = False):
     logger.info(f"Processing creative: {creative_id}")
     
     try:
+        # Update status to processing
+        update_query = f"""
+            UPDATE `{PROJECT_ID}.{DATASET_ID}.creatives`
+            SET analysis_status = 'processing',
+                analysis_started_at = CURRENT_TIMESTAMP()
+            WHERE creative_id = @creative_id
+        """
+        job_config = bigquery.QueryJobConfig(
+            query_parameters=[
+                bigquery.ScalarQueryParameter("creative_id", "STRING", creative_id)
+            ]
+        )
+        bq_client.query(update_query, job_config=job_config)
+        
         # 1. Fetch metadata
         creative = fetch_creative_metadata(creative_id)
         storage_uri = creative['storage_uri']
@@ -309,14 +328,10 @@ def process_creative(creative_id: str, force_recompute: bool = False):
                 analysis_completed_at = CURRENT_TIMESTAMP()
             WHERE creative_id = @creative_id
         """
-        job_config = bigquery.QueryJobConfig(
-            query_parameters=[
-                bigquery.ScalarQueryParameter("creative_id", "STRING", creative_id)
-            ]
-        )
         bq_client.query(update_query, job_config=job_config)
         
         logger.info(f"✅ Successfully processed {creative_id}")
+        return {'status': 'success', 'creative_id': creative_id}
         
     except Exception as e:
         logger.error(f"❌ Error processing {creative_id}: {e}", exc_info=True)
@@ -336,46 +351,98 @@ def process_creative(creative_id: str, force_recompute: bool = False):
             bq_client.query(update_query, job_config=job_config)
         except:
             pass
+        
+        raise
 
 
-def callback(message):
-    """Pub/Sub message callback"""
+# ============================================================================
+# Cloud Run HTTP Endpoints
+# ============================================================================
+
+@app.route('/health', methods=['GET'])
+def health():
+    """Health check endpoint"""
+    return {'status': 'healthy', 'service': 'analysis-worker'}, 200
+
+
+@app.route('/', methods=['POST'])
+def handle_pubsub_push():
+    """
+    Handle Pub/Sub push messages from Cloud Run
+    
+    Pub/Sub sends messages in this format:
+    {
+        "message": {
+            "data": "base64-encoded-json",
+            "attributes": {...}
+        }
+    }
+    """
     try:
-        data = json.loads(message.data.decode('utf-8'))
+        # Parse Pub/Sub message
+        envelope = request.get_json()
+        
+        if not envelope:
+            return {'error': 'No message received'}, 400
+        
+        # Pub/Sub sends data as base64-encoded string
+        message_data = envelope.get('message', {}).get('data', '')
+        
+        if not message_data:
+            return {'error': 'No data in message'}, 400
+        
+        # Decode base64
+        import base64
+        decoded_data = base64.b64decode(message_data).decode('utf-8')
+        data = json.loads(decoded_data)
+        
         creative_id = data.get('creative_id')
         force_recompute = data.get('force_recompute', False)
         
         if not creative_id:
-            logger.error("Missing creative_id in message")
-            message.ack()
-            return
+            return {'error': 'Missing creative_id'}, 400
         
-        process_creative(creative_id, force_recompute)
-        message.ack()
+        # Process creative
+        result = process_creative(creative_id, force_recompute)
+        return result, 200
         
     except Exception as e:
-        logger.error(f"Error processing message: {e}", exc_info=True)
-        message.nack()
+        logger.error(f"Error handling Pub/Sub message: {e}", exc_info=True)
+        return {'error': str(e)}, 500
 
 
-def main():
-    """Main entry point"""
-    logger.info("🚀 Starting Analysis Worker...")
-    logger.info(f"Project: {PROJECT_ID}")
-    logger.info(f"Subscription: {SUBSCRIPTION_NAME}")
+@app.route('/process', methods=['POST'])
+def process_direct():
+    """
+    Direct processing endpoint (for testing)
     
-    subscription_path = subscriber.subscription_path(PROJECT_ID, SUBSCRIPTION_NAME)
-    
-    # Start listening
-    logger.info("Listening for messages...")
-    streaming_pull_future = subscriber.subscribe(subscription_path, callback=callback)
-    
+    Body: {"creative_id": "creative_123", "force_recompute": false}
+    """
     try:
-        streaming_pull_future.result()
-    except KeyboardInterrupt:
-        streaming_pull_future.cancel()
-        logger.info("Shutting down...")
+        data = request.get_json()
+        
+        if not data:
+            return {'error': 'No JSON body'}, 400
+        
+        creative_id = data.get('creative_id')
+        force_recompute = data.get('force_recompute', False)
+        
+        if not creative_id:
+            return {'error': 'Missing creative_id'}, 400
+        
+        result = process_creative(creative_id, force_recompute)
+        return result, 200
+        
+    except Exception as e:
+        logger.error(f"Error processing creative: {e}", exc_info=True)
+        return {'error': str(e)}, 500
 
+
+# ============================================================================
+# Main Entry Point
+# ============================================================================
 
 if __name__ == '__main__':
-    main()
+    # For Cloud Run, use Flask
+    port = int(os.getenv('PORT', 8080))
+    app.run(host='0.0.0.0', port=port, debug=False)
