@@ -1,14 +1,18 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
   "framework": "nextjs",
   "regions": ["iad1"],
   "functions": {
-    "app/api/scrape/route.ts": {
+    "app/api/**/*.ts": {
       "maxDuration": 60
+    },
+    "app/api/v1/**/*.ts": {
+      "maxDuration": 300
     }
   },
   "env": {
-    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "@clerk-publishable-key",
-    "CLERK_SECRET_KEY": "@clerk-secret-key"
+    "NODE_ENV": "production"
   }
 }

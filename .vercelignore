@@ -1,0 +1,10 @@
+# Ignore files for Vercel deployment
+node_modules/
+.next/
+data/
+scripts/
+workers/
+*.md
+.env
+.env.local
+.git/
