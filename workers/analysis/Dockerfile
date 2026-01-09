@@ -10,13 +10,13 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy requirements
-COPY requirements.txt .
+COPY workers/analysis/requirements.txt .
 
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy source code
-COPY src/ ./src/
+COPY workers/analysis/src/ ./src/
 
 # Set Python path
 ENV PYTHONPATH=/app

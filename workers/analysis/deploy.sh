@@ -58,10 +58,10 @@ gcloud services enable \
 
 # Build and push Docker image
 echo "🐳 Building Docker image..."
+cd /workspaces/LLM-Viral-LTK
 gcloud builds submit \
-  --tag "$IMAGE_NAME" \
-  --project "$PROJECT_ID" \
   --config workers/analysis/cloudbuild.yaml \
+  --project "$PROJECT_ID" \
   .
 
 # Deploy to Cloud Run
