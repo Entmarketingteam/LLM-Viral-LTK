@@ -1,0 +1,122 @@
+/**
+ * Fallback mock creatives when BigQuery isn't available.
+ * Used by /api/v1/creatives/top and /api/v1/creatives/[id].
+ */
+
+export const MOCK_TOP = [
+  {
+    creative_id: "mock_demo_1",
+    platform: "ltk",
+    source_type: "organic",
+    niche: "beauty",
+    media_type: "image",
+    duration_seconds: null,
+    creator_username: "demo_creator_1",
+    storage_uri: "gs://ltk-trending/demo/1.jpg",
+    thumbnail_uri: "https://picsum.photos/seed/ltk1/400/300",
+    caption: "Demo creative – add GCP credentials for real data.",
+    created_at: new Date().toISOString(),
+    metrics: { impressions: 12500, clicks: 420, spend: null, conversions: 0, revenue: null, likes: 890, comments: 45, shares: 120, saves: 234, ctr: 0.0336, cpm: null, roas: null, engagement_rate: 0.082 },
+    annotations: { hook_type: "question", hook_strength_score: 0.85, cta_type: "link_bio", cta_clarity_score: 0.9, sentiment_overall: "positive", pacing_style: "medium", virality_score: 0.72 },
+    vision_features: null,
+  },
+  {
+    creative_id: "mock_demo_2",
+    platform: "meta_ads",
+    source_type: "paid",
+    niche: "fashion",
+    media_type: "video",
+    duration_seconds: 30,
+    creator_username: "demo_creator_2",
+    storage_uri: "gs://ltk-trending/demo/2.mp4",
+    thumbnail_uri: "https://picsum.photos/seed/ltk2/400/300",
+    caption: "Paid demo – connect BigQuery to see your creatives.",
+    created_at: new Date().toISOString(),
+    metrics: { impressions: 8200, clicks: 180, spend: 340, conversions: 12, revenue: 890, likes: 420, comments: 28, shares: 55, saves: 98, ctr: 0.022, cpm: 41.46, roas: 2.62, engagement_rate: 0.061 },
+    annotations: { hook_type: "statement", hook_strength_score: 0.78, cta_type: "shop_now", cta_clarity_score: 0.88, sentiment_overall: "positive", pacing_style: "fast", virality_score: 0.65 },
+    vision_features: null,
+  },
+  {
+    creative_id: "mock_demo_3",
+    platform: "tiktok",
+    source_type: "ugc",
+    niche: "fitness",
+    media_type: "video",
+    duration_seconds: 15,
+    creator_username: "demo_creator_3",
+    storage_uri: "gs://ltk-trending/demo/3.mp4",
+    thumbnail_uri: "https://picsum.photos/seed/ltk3/400/300",
+    caption: "UGC demo – put GOOGLE_* in .env for live data.",
+    created_at: new Date().toISOString(),
+    metrics: { impressions: 45600, clicks: 2100, spend: null, conversions: 0, revenue: null, likes: 3200, comments: 89, shares: 410, saves: 1200, ctr: 0.046, cpm: null, roas: null, engagement_rate: 0.108 },
+    annotations: { hook_type: "tutorial", hook_strength_score: 0.92, cta_type: "swipe_up", cta_clarity_score: 0.95, sentiment_overall: "positive", pacing_style: "dynamic", virality_score: 0.88 },
+    vision_features: null,
+  },
+];
+
+const MOCK_DETAIL: Record<string, { creative: unknown; metrics: unknown; vision_features: unknown; annotations: unknown }> = {
+  mock_demo_1: {
+    creative: {
+      creative_id: "mock_demo_1",
+      platform: "ltk",
+      source_type: "organic",
+      niche: "beauty",
+      media_type: "image",
+      duration_seconds: null,
+      storage_uri: "gs://ltk-trending/demo/1.jpg",
+      thumbnail_uri: "https://picsum.photos/seed/ltk1/400/300",
+      caption: "Demo creative – add GCP credentials for real data.",
+      hashtags: ["beauty", "demo"],
+      creator_username: "demo_creator_1",
+      created_at: new Date().toISOString(),
+      analysis_status: "completed",
+    },
+    metrics: { impressions: 12500, clicks: 420, spend: null, conversions: 0, revenue: null, likes: 890, comments: 45, shares: 120, saves: 234, ctr: 0.0336, roas: null, engagement_rate: 0.082 },
+    vision_features: { num_shots: 1, avg_shot_length_sec: null, first_face_appearance_sec: null, first_product_appearance_sec: null, product_on_screen_ratio: 0.6, has_overlay_text: false, scene_tags: ["indoor"], style_tags: ["minimal"], object_tags: ["product"] },
+    annotations: { hook_type: "question", hook_text: "Best serum for dry skin?", hook_strength_score: 0.85, cta_type: "link_bio", cta_text: null, cta_clarity_score: 0.9, sentiment_overall: "positive", emotional_tone_tags: [], pacing_style: "medium", content_structure: null, transcript_first_5s: null, virality_score: 0.72, virality_factors: [] },
+  },
+  mock_demo_2: {
+    creative: {
+      creative_id: "mock_demo_2",
+      platform: "meta_ads",
+      source_type: "paid",
+      niche: "fashion",
+      media_type: "video",
+      duration_seconds: 30,
+      storage_uri: "gs://ltk-trending/demo/2.mp4",
+      thumbnail_uri: "https://picsum.photos/seed/ltk2/400/300",
+      caption: "Paid demo – connect BigQuery to see your creatives.",
+      hashtags: ["fashion", "paid"],
+      creator_username: "demo_creator_2",
+      created_at: new Date().toISOString(),
+      analysis_status: "completed",
+    },
+    metrics: { impressions: 8200, clicks: 180, spend: 340, conversions: 12, revenue: 890, likes: 420, comments: 28, shares: 55, saves: 98, ctr: 0.022, roas: 2.62, engagement_rate: 0.061 },
+    vision_features: { num_shots: 4, avg_shot_length_sec: 7.5, first_face_appearance_sec: 0, first_product_appearance_sec: 2, product_on_screen_ratio: 0.4, has_overlay_text: true, scene_tags: ["studio", "closeup"], style_tags: ["professional"], object_tags: ["apparel", "accessories"] },
+    annotations: { hook_type: "statement", hook_text: "This combo sold out twice.", hook_strength_score: 0.78, cta_type: "shop_now", cta_text: null, cta_clarity_score: 0.88, sentiment_overall: "positive", emotional_tone_tags: [], pacing_style: "fast", content_structure: null, transcript_first_5s: null, virality_score: 0.65, virality_factors: [] },
+  },
+  mock_demo_3: {
+    creative: {
+      creative_id: "mock_demo_3",
+      platform: "tiktok",
+      source_type: "ugc",
+      niche: "fitness",
+      media_type: "video",
+      duration_seconds: 15,
+      storage_uri: "gs://ltk-trending/demo/3.mp4",
+      thumbnail_uri: "https://picsum.photos/seed/ltk3/400/300",
+      caption: "UGC demo – put GOOGLE_* in .env for live data.",
+      hashtags: ["fitness", "ugc"],
+      creator_username: "demo_creator_3",
+      created_at: new Date().toISOString(),
+      analysis_status: "completed",
+    },
+    metrics: { impressions: 45600, clicks: 2100, spend: null, conversions: 0, revenue: null, likes: 3200, comments: 89, shares: 410, saves: 1200, ctr: 0.046, roas: null, engagement_rate: 0.108 },
+    vision_features: { num_shots: 1, avg_shot_length_sec: 15, first_face_appearance_sec: 0, first_product_appearance_sec: 1, product_on_screen_ratio: 0.3, has_overlay_text: true, scene_tags: ["gym", "lifestyle"], style_tags: ["casual", "authentic"], object_tags: ["equipment", "apparel"] },
+    annotations: { hook_type: "tutorial", hook_text: "How I get 10k steps without leaving my block", hook_strength_score: 0.92, cta_type: "swipe_up", cta_text: null, cta_clarity_score: 0.95, sentiment_overall: "positive", emotional_tone_tags: [], pacing_style: "dynamic", content_structure: null, transcript_first_5s: null, virality_score: 0.88, virality_factors: [] },
+  },
+};
+
+export function getMockDetail(creativeId: string) {
+  return MOCK_DETAIL[creativeId] ?? null;
+}

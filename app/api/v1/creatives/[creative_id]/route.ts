@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { bigquery } from '@/lib/bq';
 import { requireUser, getAuthErrorResponse } from '@/lib/auth';
 import { CreativeDetailResponse, APIError } from '@/types/api';
+import { getMockDetail } from '@/lib/mock-creatives';
 
 const PROJECT_ID = process.env.GOOGLE_PROJECT_ID || 'bolt-ltk-app';
 const DATASET = 'creator_pulse';
@@ -20,8 +21,9 @@ export async function GET(
     return getAuthErrorResponse();
   }
 
+  const creative_id = params.creative_id;
+
   try {
-    const { creative_id } = params;
 
     if (!creative_id) {
       const error: APIError = {
@@ -174,14 +176,16 @@ export async function GET(
     return NextResponse.json(response);
 
   } catch (error) {
+    const mock = getMockDetail(creative_id);
+    if (mock) {
+      return NextResponse.json(mock as CreativeDetailResponse);
+    }
     console.error('Error fetching creative details:', error);
-    
     const apiError: APIError = {
       error: 'INTERNAL_ERROR',
       message: 'Failed to fetch creative details',
       details: error instanceof Error ? error.message : 'Unknown error',
     };
-    
     return NextResponse.json(apiError, { status: 500 });
   }
 }

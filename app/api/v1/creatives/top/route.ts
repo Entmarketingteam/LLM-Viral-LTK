@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { bigquery } from '@/lib/bq';
 import { requireUser, getAuthErrorResponse } from '@/lib/auth';
 import { TopCreativesParams, TopCreativesResponse, APIError } from '@/types/api';
+import { MOCK_TOP } from '@/lib/mock-creatives';
 
 const PROJECT_ID = process.env.GOOGLE_PROJECT_ID || 'bolt-ltk-app';
 const DATASET = 'creator_pulse';
@@ -207,14 +208,21 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(response);
 
   } catch (error) {
-    console.error('Error fetching top creatives:', error);
-    
-    const apiError: APIError = {
-      error: 'INTERNAL_ERROR',
-      message: 'Failed to fetch top creatives',
-      details: error instanceof Error ? error.message : 'Unknown error',
+    console.warn('BigQuery failed, serving mock creatives:', error instanceof Error ? error.message : error);
+    const { searchParams } = new URL(req.url);
+    const params: TopCreativesParams = {
+      niche: searchParams.get('niche') || 'beauty',
+      platform: searchParams.get('platform') || undefined,
+      source_type: searchParams.get('source_type') as TopCreativesParams['source_type'],
+      interval_days: parseInt(searchParams.get('interval_days') || '30'),
+      limit: Math.min(parseInt(searchParams.get('limit') || '20'), 100),
+      sort_by: (searchParams.get('sort_by') as TopCreativesParams['sort_by']) || 'engagement_rate',
     };
-    
-    return NextResponse.json(apiError, { status: 500 });
+    let items = MOCK_TOP.filter((m) => m.niche.toLowerCase() === (params.niche || '').toLowerCase());
+    if (params.platform) items = items.filter((m) => m.platform === params.platform);
+    if (params.source_type) items = items.filter((m) => m.source_type === params.source_type);
+    if (items.length === 0) items = MOCK_TOP;
+    items = items.slice(0, params.limit);
+    return NextResponse.json({ items, total: items.length, params } as TopCreativesResponse);
   }
 }
