@@ -28,7 +28,7 @@ function random(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function randomChoice<T>(arr: T[]): T {
+function randomChoice<T>(arr: readonly T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
@@ -235,11 +235,11 @@ async function main() {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
   
-  const creatives = [];
-  const allMetrics = [];
-  const visionFeatures = [];
-  const annotations = [];
-  const embeddings = [];
+  const creatives: ReturnType<typeof generateCreative>[] = [];
+  const allMetrics: (ReturnType<typeof generateMetrics>)[number][] = [];
+  const visionFeatures: ReturnType<typeof generateVisionFeatures>[] = [];
+  const annotations: ReturnType<typeof generateLLMAnnotations>[] = [];
+  const embeddings: { id: string; values: number[]; metadata: object }[] = [];
   
   for (let i = 1; i <= count; i++) {
     const creative = generateCreative(i);

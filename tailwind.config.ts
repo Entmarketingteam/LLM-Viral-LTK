@@ -6,7 +6,21 @@ const config: Config = {
     "./components/**/*.{ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: "var(--card)",
+        "card-foreground": "var(--card-foreground)",
+        muted: "var(--muted)",
+        "muted-foreground": "var(--muted-foreground)",
+        accent: "var(--accent)",
+        border: "var(--border)",
+      },
+      borderRadius: {
+        DEFAULT: "var(--radius)",
+      },
+    },
   },
   plugins: [],
 };

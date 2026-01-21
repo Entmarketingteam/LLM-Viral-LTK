@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 
 interface CreativeWithMetrics {
@@ -109,7 +110,8 @@ export function TopCreatives({
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {creatives.map((creative) => (
-          <Card key={creative.creative_id} className="p-4">
+          <Link key={creative.creative_id} href={`/creatives/${creative.creative_id}`}>
+          <Card className="p-4 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer">
             <div className="space-y-3">
               {/* Thumbnail */}
               {creative.thumbnail_uri && (
@@ -189,6 +191,7 @@ export function TopCreatives({
               </div>
             </div>
           </Card>
+          </Link>
         ))}
       </div>
     </div>
