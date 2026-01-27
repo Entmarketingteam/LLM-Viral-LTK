@@ -10,6 +10,7 @@ import {
   Search,
   GitCompare,
   ImageIcon,
+  Settings,
 } from "lucide-react";
 
 const nav = [
@@ -18,6 +19,7 @@ const nav = [
   { href: "/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/search", label: "Search", icon: Search },
   { href: "/compare", label: "Compare", icon: GitCompare },
+  { href: "/settings/ltk-auth", label: "LTK Auth", icon: Settings },
 ] as const;
 
 export function Sidebar() {
