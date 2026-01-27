@@ -28,6 +28,9 @@ yarn-error.log*
 .env*.local
 .env
 
+# LTK auth tokens (sensitive)
+.ltk-auth.json
+
 # vercel
 .vercel
 

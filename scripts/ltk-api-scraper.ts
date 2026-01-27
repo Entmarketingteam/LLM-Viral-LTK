@@ -16,6 +16,7 @@ import puppeteer, { Page, Browser, HTTPResponse } from 'puppeteer-core';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ScrapedPost, LTK_CATEGORIES, LTKCategorySlug } from '../types/ltk';
+import { getLtkCookies, hasLtkAuth } from '../lib/ltk-auth';
 
 // Configuration
 const CONFIG = {
@@ -300,6 +301,15 @@ async function scrapeCategory(
   await page.setUserAgent(
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
   );
+
+  // Load auth cookies if available
+  if (hasLtkAuth()) {
+    const cookies = getLtkCookies();
+    if (cookies.length > 0) {
+      console.log(`   🔐 Loading ${cookies.length} auth cookies...`);
+      await page.setCookie(...cookies);
+    }
+  }
 
   // Setup data capture
   const captured: CapturedData = {
