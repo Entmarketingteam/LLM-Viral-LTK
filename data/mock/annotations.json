@@ -1,0 +1,622 @@
+[
+  {
+    "creative_id": "mock_creative_0001",
+    "hook_type": "story",
+    "hook_text": "I found the perfect solution",
+    "hook_strength_score": 0.89,
+    "cta_type": "shop_now",
+    "cta_text": "Swipe up to see more",
+    "cta_clarity_score": 0.88,
+    "cta_timestamp_sec": 60,
+    "sentiment_overall": "negative",
+    "sentiment_score": -0.06,
+    "emotional_tone_tags": [
+      "calm",
+      "professional",
+      "trustworthy"
+    ],
+    "pacing_style": "dynamic",
+    "content_structure": "problem_solution",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.74,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0002",
+    "hook_type": "tutorial",
+    "hook_text": "I found the perfect solution",
+    "hook_strength_score": 0.73,
+    "cta_type": "shop_now",
+    "cta_text": "Shop now and save 20%!",
+    "cta_clarity_score": 0.7,
+    "cta_timestamp_sec": 35,
+    "sentiment_overall": "positive",
+    "sentiment_score": -0.28,
+    "emotional_tone_tags": [
+      "calm",
+      "professional",
+      "trustworthy"
+    ],
+    "pacing_style": "fast",
+    "content_structure": "showcase",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.77,
+    "virality_factors": [
+      "influencer_credibility",
+      "product_demo",
+      "social_proof"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0003",
+    "hook_type": "statement",
+    "hook_text": "You NEED to see this!",
+    "hook_strength_score": 0.72,
+    "cta_type": "none",
+    "cta_text": "Comment your favorite!",
+    "cta_clarity_score": 0.8,
+    "cta_timestamp_sec": 49,
+    "sentiment_overall": "negative",
+    "sentiment_score": 0.62,
+    "emotional_tone_tags": [
+      "excited",
+      "friendly",
+      "helpful"
+    ],
+    "pacing_style": "fast",
+    "content_structure": "tutorial",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.57,
+    "virality_factors": [
+      "emotional_appeal",
+      "visual_quality",
+      "timing"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0004",
+    "hook_type": "tutorial",
+    "hook_text": "This changed everything for me!",
+    "hook_strength_score": 0.94,
+    "cta_type": "shop_now",
+    "cta_text": "Shop now and save 20%!",
+    "cta_clarity_score": 0.93,
+    "cta_timestamp_sec": 42,
+    "sentiment_overall": "negative",
+    "sentiment_score": -0.14,
+    "emotional_tone_tags": [
+      "warm",
+      "inviting",
+      "welcoming"
+    ],
+    "pacing_style": "fast",
+    "content_structure": "problem_solution",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.84,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0005",
+    "hook_type": "question",
+    "hook_text": "This changed everything for me!",
+    "hook_strength_score": 0.76,
+    "cta_type": "link_bio",
+    "cta_text": "Link in bio for the full routine!",
+    "cta_clarity_score": 0.93,
+    "cta_timestamp_sec": 43,
+    "sentiment_overall": "positive",
+    "sentiment_score": 0.93,
+    "emotional_tone_tags": [
+      "excited",
+      "friendly",
+      "helpful"
+    ],
+    "pacing_style": "fast",
+    "content_structure": "story",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.72,
+    "virality_factors": [
+      "emotional_appeal",
+      "visual_quality",
+      "timing"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0006",
+    "hook_type": "shock",
+    "hook_text": "I found the perfect solution",
+    "hook_strength_score": 0.61,
+    "cta_type": "swipe_up",
+    "cta_text": "Swipe up to see more",
+    "cta_clarity_score": 0.89,
+    "cta_timestamp_sec": 41,
+    "sentiment_overall": "negative",
+    "sentiment_score": 0.43,
+    "emotional_tone_tags": [
+      "calm",
+      "professional",
+      "trustworthy"
+    ],
+    "pacing_style": "slow",
+    "content_structure": "story",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.61,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0007",
+    "hook_type": "story",
+    "hook_text": "I found the perfect solution",
+    "hook_strength_score": 0.87,
+    "cta_type": "link_bio",
+    "cta_text": "Comment your favorite!",
+    "cta_clarity_score": 0.92,
+    "cta_timestamp_sec": 44,
+    "sentiment_overall": "positive",
+    "sentiment_score": 0.93,
+    "emotional_tone_tags": [
+      "excited",
+      "friendly",
+      "helpful"
+    ],
+    "pacing_style": "medium",
+    "content_structure": "story",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.69,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0008",
+    "hook_type": "tutorial",
+    "hook_text": "You NEED to see this!",
+    "hook_strength_score": 0.77,
+    "cta_type": "link_bio",
+    "cta_text": "Shop now and save 20%!",
+    "cta_clarity_score": 0.76,
+    "cta_timestamp_sec": 56,
+    "sentiment_overall": "positive",
+    "sentiment_score": -0.06,
+    "emotional_tone_tags": [
+      "warm",
+      "inviting",
+      "welcoming"
+    ],
+    "pacing_style": "medium",
+    "content_structure": "showcase",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.55,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0009",
+    "hook_type": "story",
+    "hook_text": "I found the perfect solution",
+    "hook_strength_score": 0.74,
+    "cta_type": "shop_now",
+    "cta_text": "Link in bio for the full routine!",
+    "cta_clarity_score": 0.79,
+    "cta_timestamp_sec": 60,
+    "sentiment_overall": "negative",
+    "sentiment_score": -0.31,
+    "emotional_tone_tags": [
+      "calm",
+      "professional",
+      "trustworthy"
+    ],
+    "pacing_style": "dynamic",
+    "content_structure": "story",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.6,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0010",
+    "hook_type": "tutorial",
+    "hook_text": "I found the perfect solution",
+    "hook_strength_score": 0.8,
+    "cta_type": "shop_now",
+    "cta_text": "Swipe up to see more",
+    "cta_clarity_score": 0.77,
+    "cta_timestamp_sec": 37,
+    "sentiment_overall": "positive",
+    "sentiment_score": 0.13,
+    "emotional_tone_tags": [
+      "warm",
+      "inviting",
+      "welcoming"
+    ],
+    "pacing_style": "medium",
+    "content_structure": "showcase",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.71,
+    "virality_factors": [
+      "influencer_credibility",
+      "product_demo",
+      "social_proof"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0011",
+    "hook_type": "question",
+    "hook_text": "I found the perfect solution",
+    "hook_strength_score": 0.94,
+    "cta_type": "swipe_up",
+    "cta_text": "Shop now and save 20%!",
+    "cta_clarity_score": 0.7,
+    "cta_timestamp_sec": 48,
+    "sentiment_overall": "negative",
+    "sentiment_score": -0.5,
+    "emotional_tone_tags": [
+      "calm",
+      "professional",
+      "trustworthy"
+    ],
+    "pacing_style": "fast",
+    "content_structure": "showcase",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.86,
+    "virality_factors": [
+      "influencer_credibility",
+      "product_demo",
+      "social_proof"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0012",
+    "hook_type": "tutorial",
+    "hook_text": "This is a game changer",
+    "hook_strength_score": 0.76,
+    "cta_type": "shop_now",
+    "cta_text": "Comment your favorite!",
+    "cta_clarity_score": 0.85,
+    "cta_timestamp_sec": 31,
+    "sentiment_overall": "negative",
+    "sentiment_score": 1,
+    "emotional_tone_tags": [
+      "calm",
+      "professional",
+      "trustworthy"
+    ],
+    "pacing_style": "slow",
+    "content_structure": "showcase",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.65,
+    "virality_factors": [
+      "emotional_appeal",
+      "visual_quality",
+      "timing"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0013",
+    "hook_type": "shock",
+    "hook_text": "I found the perfect solution",
+    "hook_strength_score": 0.69,
+    "cta_type": "shop_now",
+    "cta_text": "Check out my latest post",
+    "cta_clarity_score": 0.71,
+    "cta_timestamp_sec": 52,
+    "sentiment_overall": "neutral",
+    "sentiment_score": -0.17,
+    "emotional_tone_tags": [
+      "urgent",
+      "energetic",
+      "motivational"
+    ],
+    "pacing_style": "medium",
+    "content_structure": "tutorial",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.72,
+    "virality_factors": [
+      "influencer_credibility",
+      "product_demo",
+      "social_proof"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0014",
+    "hook_type": "tutorial",
+    "hook_text": "This is a game changer",
+    "hook_strength_score": 0.76,
+    "cta_type": "swipe_up",
+    "cta_text": "Shop now and save 20%!",
+    "cta_clarity_score": 0.96,
+    "cta_timestamp_sec": 47,
+    "sentiment_overall": "positive",
+    "sentiment_score": 0.24,
+    "emotional_tone_tags": [
+      "calm",
+      "professional",
+      "trustworthy"
+    ],
+    "pacing_style": "fast",
+    "content_structure": "showcase",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.54,
+    "virality_factors": [
+      "influencer_credibility",
+      "product_demo",
+      "social_proof"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0015",
+    "hook_type": "tutorial",
+    "hook_text": "You NEED to see this!",
+    "hook_strength_score": 0.95,
+    "cta_type": "shop_now",
+    "cta_text": "Shop now and save 20%!",
+    "cta_clarity_score": 0.95,
+    "cta_timestamp_sec": 57,
+    "sentiment_overall": "neutral",
+    "sentiment_score": 0.24,
+    "emotional_tone_tags": [
+      "warm",
+      "inviting",
+      "welcoming"
+    ],
+    "pacing_style": "dynamic",
+    "content_structure": "tutorial",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.63,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0016",
+    "hook_type": "statement",
+    "hook_text": "You NEED to see this!",
+    "hook_strength_score": 0.79,
+    "cta_type": "none",
+    "cta_text": "Link in bio for the full routine!",
+    "cta_clarity_score": 0.87,
+    "cta_timestamp_sec": 57,
+    "sentiment_overall": "positive",
+    "sentiment_score": 0.29,
+    "emotional_tone_tags": [
+      "excited",
+      "friendly",
+      "helpful"
+    ],
+    "pacing_style": "dynamic",
+    "content_structure": "story",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.6,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0017",
+    "hook_type": "tutorial",
+    "hook_text": "Want to know my secret for glowing skin?",
+    "hook_strength_score": 0.68,
+    "cta_type": "none",
+    "cta_text": "Swipe up to see more",
+    "cta_clarity_score": 0.82,
+    "cta_timestamp_sec": 30,
+    "sentiment_overall": "positive",
+    "sentiment_score": 0.5,
+    "emotional_tone_tags": [
+      "excited",
+      "friendly",
+      "helpful"
+    ],
+    "pacing_style": "medium",
+    "content_structure": "problem_solution",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.83,
+    "virality_factors": [
+      "influencer_credibility",
+      "product_demo",
+      "social_proof"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0018",
+    "hook_type": "story",
+    "hook_text": "This changed everything for me!",
+    "hook_strength_score": 0.67,
+    "cta_type": "swipe_up",
+    "cta_text": "Swipe up to see more",
+    "cta_clarity_score": 0.9,
+    "cta_timestamp_sec": 47,
+    "sentiment_overall": "neutral",
+    "sentiment_score": 0.63,
+    "emotional_tone_tags": [
+      "excited",
+      "friendly",
+      "helpful"
+    ],
+    "pacing_style": "slow",
+    "content_structure": "problem_solution",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.59,
+    "virality_factors": [
+      "emotional_appeal",
+      "visual_quality",
+      "timing"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0019",
+    "hook_type": "story",
+    "hook_text": "This is a game changer",
+    "hook_strength_score": 0.73,
+    "cta_type": "comment",
+    "cta_text": "Swipe up to see more",
+    "cta_clarity_score": 0.94,
+    "cta_timestamp_sec": 46,
+    "sentiment_overall": "positive",
+    "sentiment_score": 0.51,
+    "emotional_tone_tags": [
+      "urgent",
+      "energetic",
+      "motivational"
+    ],
+    "pacing_style": "slow",
+    "content_structure": "problem_solution",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.66,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  },
+  {
+    "creative_id": "mock_creative_0020",
+    "hook_type": "question",
+    "hook_text": "This changed everything for me!",
+    "hook_strength_score": 0.61,
+    "cta_type": "swipe_up",
+    "cta_text": "Check out my latest post",
+    "cta_clarity_score": 0.8,
+    "cta_timestamp_sec": 36,
+    "sentiment_overall": "negative",
+    "sentiment_score": 0.68,
+    "emotional_tone_tags": [
+      "calm",
+      "professional",
+      "trustworthy"
+    ],
+    "pacing_style": "dynamic",
+    "content_structure": "tutorial",
+    "transcript_full": "This is a full transcript of the video content...",
+    "transcript_first_5s": "Want to know my secret for glowing skin?",
+    "transcript_language": "en",
+    "virality_score": 0.64,
+    "virality_factors": [
+      "strong_hook",
+      "clear_cta",
+      "trending_topic"
+    ],
+    "model_name": "gpt-4o",
+    "prompt_version": "v1.0",
+    "annotation_version": "v1.0"
+  }
+]

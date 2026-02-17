@@ -2,6 +2,8 @@
 
 Extract LTK authentication tokens automatically using Puppeteer - no manual copying needed!
 
+**See also:** [LTK_AUTH_PLAN.md](../LTK_AUTH_PLAN.md) for the overall auth plan (ShopMy API session + CSRF vs browser extractor) and security guidelines.
+
 ## Quick Start
 
 ### 1. Extract Auth Tokens

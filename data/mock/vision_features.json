@@ -1,0 +1,702 @@
+[
+  {
+    "creative_id": "mock_creative_0001",
+    "num_shots": 9,
+    "avg_shot_length_sec": 4,
+    "first_face_appearance_sec": 2,
+    "first_product_appearance_sec": 1,
+    "product_on_screen_ratio": 0.55,
+    "face_on_screen_ratio": 0.53,
+    "has_overlay_text": true,
+    "has_logo": false,
+    "has_captions": true,
+    "dominant_colors": [
+      "#611bc8",
+      "#06d8e5"
+    ],
+    "scene_tags": [
+      "indoor",
+      "kitchen",
+      "lifestyle"
+    ],
+    "style_tags": [
+      "vibrant",
+      "colorful",
+      "energetic"
+    ],
+    "object_tags": [
+      "dress",
+      "shoes",
+      "accessories"
+    ],
+    "clip_embedding_id": "mock_creative_0001",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 44
+  },
+  {
+    "creative_id": "mock_creative_0002",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 5,
+    "first_product_appearance_sec": 4,
+    "product_on_screen_ratio": 0.44,
+    "face_on_screen_ratio": 0.84,
+    "has_overlay_text": false,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#31b995",
+      "#c536ce"
+    ],
+    "scene_tags": [
+      "studio",
+      "minimal",
+      "professional"
+    ],
+    "style_tags": [
+      "vibrant",
+      "colorful",
+      "energetic"
+    ],
+    "object_tags": [
+      "dress",
+      "shoes",
+      "accessories"
+    ],
+    "clip_embedding_id": "mock_creative_0002",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0003",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 4,
+    "first_product_appearance_sec": 5,
+    "product_on_screen_ratio": 0.65,
+    "face_on_screen_ratio": 0.6,
+    "has_overlay_text": false,
+    "has_logo": true,
+    "has_captions": false,
+    "dominant_colors": [
+      "#012534",
+      "#2eb8c8"
+    ],
+    "scene_tags": [
+      "studio",
+      "minimal",
+      "professional"
+    ],
+    "style_tags": [
+      "vibrant",
+      "colorful",
+      "energetic"
+    ],
+    "object_tags": [
+      "dumbbells",
+      "yoga",
+      "fitness"
+    ],
+    "clip_embedding_id": "mock_creative_0003",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0004",
+    "num_shots": 8,
+    "avg_shot_length_sec": 6,
+    "first_face_appearance_sec": 2,
+    "first_product_appearance_sec": 1,
+    "product_on_screen_ratio": 0.54,
+    "face_on_screen_ratio": 0.86,
+    "has_overlay_text": false,
+    "has_logo": false,
+    "has_captions": true,
+    "dominant_colors": [
+      "#eb1fb3",
+      "#8a544b"
+    ],
+    "scene_tags": [
+      "home",
+      "cozy",
+      "aesthetic"
+    ],
+    "style_tags": [
+      "soft",
+      "pastel",
+      "gentle"
+    ],
+    "object_tags": [
+      "furniture",
+      "decor",
+      "plants"
+    ],
+    "clip_embedding_id": "mock_creative_0004",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 108
+  },
+  {
+    "creative_id": "mock_creative_0005",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 0,
+    "first_product_appearance_sec": 1,
+    "product_on_screen_ratio": 0.52,
+    "face_on_screen_ratio": 0.79,
+    "has_overlay_text": false,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#6ce11f",
+      "#1de0fd"
+    ],
+    "scene_tags": [
+      "studio",
+      "minimal",
+      "professional"
+    ],
+    "style_tags": [
+      "dark",
+      "moody",
+      "dramatic"
+    ],
+    "object_tags": [
+      "furniture",
+      "decor",
+      "plants"
+    ],
+    "clip_embedding_id": "mock_creative_0005",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0006",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 3,
+    "first_product_appearance_sec": 6,
+    "product_on_screen_ratio": 0.37,
+    "face_on_screen_ratio": 0.75,
+    "has_overlay_text": false,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#053681",
+      "#6547ef"
+    ],
+    "scene_tags": [
+      "studio",
+      "minimal",
+      "professional"
+    ],
+    "style_tags": [
+      "minimal",
+      "bright",
+      "clean"
+    ],
+    "object_tags": [
+      "furniture",
+      "decor",
+      "plants"
+    ],
+    "clip_embedding_id": "mock_creative_0006",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0007",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 4,
+    "first_product_appearance_sec": 9,
+    "product_on_screen_ratio": 0.36,
+    "face_on_screen_ratio": 0.95,
+    "has_overlay_text": true,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#05faac",
+      "#e9160e"
+    ],
+    "scene_tags": [
+      "home",
+      "cozy",
+      "aesthetic"
+    ],
+    "style_tags": [
+      "minimal",
+      "bright",
+      "clean"
+    ],
+    "object_tags": [
+      "dress",
+      "shoes",
+      "accessories"
+    ],
+    "clip_embedding_id": "mock_creative_0007",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0008",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 3,
+    "first_product_appearance_sec": 8,
+    "product_on_screen_ratio": 0.61,
+    "face_on_screen_ratio": 0.87,
+    "has_overlay_text": false,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#005381",
+      "#45931b"
+    ],
+    "scene_tags": [
+      "indoor",
+      "kitchen",
+      "lifestyle"
+    ],
+    "style_tags": [
+      "soft",
+      "pastel",
+      "gentle"
+    ],
+    "object_tags": [
+      "furniture",
+      "decor",
+      "plants"
+    ],
+    "clip_embedding_id": "mock_creative_0008",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0009",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 5,
+    "first_product_appearance_sec": 4,
+    "product_on_screen_ratio": 0.79,
+    "face_on_screen_ratio": 0.86,
+    "has_overlay_text": false,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#0ae349",
+      "#c93cb0"
+    ],
+    "scene_tags": [
+      "home",
+      "cozy",
+      "aesthetic"
+    ],
+    "style_tags": [
+      "vibrant",
+      "colorful",
+      "energetic"
+    ],
+    "object_tags": [
+      "skincare",
+      "serum",
+      "mirror"
+    ],
+    "clip_embedding_id": "mock_creative_0009",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0010",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 1,
+    "first_product_appearance_sec": 1,
+    "product_on_screen_ratio": 0.86,
+    "face_on_screen_ratio": 0.87,
+    "has_overlay_text": true,
+    "has_logo": true,
+    "has_captions": false,
+    "dominant_colors": [
+      "#7c11d1",
+      "#0c566e"
+    ],
+    "scene_tags": [
+      "home",
+      "cozy",
+      "aesthetic"
+    ],
+    "style_tags": [
+      "dark",
+      "moody",
+      "dramatic"
+    ],
+    "object_tags": [
+      "furniture",
+      "decor",
+      "plants"
+    ],
+    "clip_embedding_id": "mock_creative_0010",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0011",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 4,
+    "first_product_appearance_sec": 1,
+    "product_on_screen_ratio": 0.36,
+    "face_on_screen_ratio": 0.7,
+    "has_overlay_text": false,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#608227",
+      "#1aa983"
+    ],
+    "scene_tags": [
+      "home",
+      "cozy",
+      "aesthetic"
+    ],
+    "style_tags": [
+      "vibrant",
+      "colorful",
+      "energetic"
+    ],
+    "object_tags": [
+      "dumbbells",
+      "yoga",
+      "fitness"
+    ],
+    "clip_embedding_id": "mock_creative_0011",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0012",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 3,
+    "first_product_appearance_sec": 7,
+    "product_on_screen_ratio": 0.47,
+    "face_on_screen_ratio": 0.78,
+    "has_overlay_text": false,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#d5c782",
+      "#d4c713"
+    ],
+    "scene_tags": [
+      "indoor",
+      "kitchen",
+      "lifestyle"
+    ],
+    "style_tags": [
+      "soft",
+      "pastel",
+      "gentle"
+    ],
+    "object_tags": [
+      "skincare",
+      "serum",
+      "mirror"
+    ],
+    "clip_embedding_id": "mock_creative_0012",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0013",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 2,
+    "first_product_appearance_sec": 5,
+    "product_on_screen_ratio": 0.51,
+    "face_on_screen_ratio": 0.62,
+    "has_overlay_text": true,
+    "has_logo": true,
+    "has_captions": false,
+    "dominant_colors": [
+      "#dbffb6",
+      "#c20466"
+    ],
+    "scene_tags": [
+      "outdoor",
+      "beach",
+      "summer"
+    ],
+    "style_tags": [
+      "dark",
+      "moody",
+      "dramatic"
+    ],
+    "object_tags": [
+      "dumbbells",
+      "yoga",
+      "fitness"
+    ],
+    "clip_embedding_id": "mock_creative_0013",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0014",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 2,
+    "first_product_appearance_sec": 4,
+    "product_on_screen_ratio": 0.39,
+    "face_on_screen_ratio": 0.43,
+    "has_overlay_text": true,
+    "has_logo": true,
+    "has_captions": false,
+    "dominant_colors": [
+      "#7cc1af",
+      "#c0dcd9"
+    ],
+    "scene_tags": [
+      "studio",
+      "minimal",
+      "professional"
+    ],
+    "style_tags": [
+      "dark",
+      "moody",
+      "dramatic"
+    ],
+    "object_tags": [
+      "dumbbells",
+      "yoga",
+      "fitness"
+    ],
+    "clip_embedding_id": "mock_creative_0014",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0015",
+    "num_shots": 9,
+    "avg_shot_length_sec": 13,
+    "first_face_appearance_sec": 4,
+    "first_product_appearance_sec": 2,
+    "product_on_screen_ratio": 0.61,
+    "face_on_screen_ratio": 0.48,
+    "has_overlay_text": true,
+    "has_logo": true,
+    "has_captions": false,
+    "dominant_colors": [
+      "#70cfb4",
+      "#fa8371"
+    ],
+    "scene_tags": [
+      "indoor",
+      "kitchen",
+      "lifestyle"
+    ],
+    "style_tags": [
+      "vibrant",
+      "colorful",
+      "energetic"
+    ],
+    "object_tags": [
+      "skincare",
+      "serum",
+      "mirror"
+    ],
+    "clip_embedding_id": "mock_creative_0015",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 51
+  },
+  {
+    "creative_id": "mock_creative_0016",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 0,
+    "first_product_appearance_sec": 3,
+    "product_on_screen_ratio": 0.66,
+    "face_on_screen_ratio": 0.63,
+    "has_overlay_text": false,
+    "has_logo": true,
+    "has_captions": false,
+    "dominant_colors": [
+      "#795780",
+      "#ee1c37"
+    ],
+    "scene_tags": [
+      "home",
+      "cozy",
+      "aesthetic"
+    ],
+    "style_tags": [
+      "soft",
+      "pastel",
+      "gentle"
+    ],
+    "object_tags": [
+      "dress",
+      "shoes",
+      "accessories"
+    ],
+    "clip_embedding_id": "mock_creative_0016",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0017",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 2,
+    "first_product_appearance_sec": 3,
+    "product_on_screen_ratio": 0.62,
+    "face_on_screen_ratio": 0.77,
+    "has_overlay_text": false,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#6173f9",
+      "#827630"
+    ],
+    "scene_tags": [
+      "indoor",
+      "kitchen",
+      "lifestyle"
+    ],
+    "style_tags": [
+      "minimal",
+      "bright",
+      "clean"
+    ],
+    "object_tags": [
+      "dress",
+      "shoes",
+      "accessories"
+    ],
+    "clip_embedding_id": "mock_creative_0017",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0018",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 0,
+    "first_product_appearance_sec": 6,
+    "product_on_screen_ratio": 0.57,
+    "face_on_screen_ratio": 0.84,
+    "has_overlay_text": true,
+    "has_logo": false,
+    "has_captions": false,
+    "dominant_colors": [
+      "#4e099e",
+      "#8da640"
+    ],
+    "scene_tags": [
+      "indoor",
+      "kitchen",
+      "lifestyle"
+    ],
+    "style_tags": [
+      "soft",
+      "pastel",
+      "gentle"
+    ],
+    "object_tags": [
+      "dress",
+      "shoes",
+      "accessories"
+    ],
+    "clip_embedding_id": "mock_creative_0018",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0019",
+    "num_shots": 1,
+    "avg_shot_length_sec": null,
+    "first_face_appearance_sec": 0,
+    "first_product_appearance_sec": 1,
+    "product_on_screen_ratio": 0.89,
+    "face_on_screen_ratio": 0.81,
+    "has_overlay_text": true,
+    "has_logo": true,
+    "has_captions": false,
+    "dominant_colors": [
+      "#0280c9",
+      "#3518d0"
+    ],
+    "scene_tags": [
+      "indoor",
+      "kitchen",
+      "lifestyle"
+    ],
+    "style_tags": [
+      "soft",
+      "pastel",
+      "gentle"
+    ],
+    "object_tags": [
+      "skincare",
+      "serum",
+      "mirror"
+    ],
+    "clip_embedding_id": "mock_creative_0019",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 1
+  },
+  {
+    "creative_id": "mock_creative_0020",
+    "num_shots": 6,
+    "avg_shot_length_sec": 7,
+    "first_face_appearance_sec": 4,
+    "first_product_appearance_sec": 9,
+    "product_on_screen_ratio": 0.55,
+    "face_on_screen_ratio": 0.6,
+    "has_overlay_text": true,
+    "has_logo": true,
+    "has_captions": true,
+    "dominant_colors": [
+      "#38a9cf",
+      "#810c3b"
+    ],
+    "scene_tags": [
+      "outdoor",
+      "beach",
+      "summer"
+    ],
+    "style_tags": [
+      "vibrant",
+      "colorful",
+      "energetic"
+    ],
+    "object_tags": [
+      "dumbbells",
+      "yoga",
+      "fitness"
+    ],
+    "clip_embedding_id": "mock_creative_0020",
+    "embedding_model": "ViT-B/32",
+    "model_version": "sam2-v1.0",
+    "frames_analyzed": 93
+  }
+]

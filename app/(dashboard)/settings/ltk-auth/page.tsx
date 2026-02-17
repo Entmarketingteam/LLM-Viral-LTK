@@ -1,16 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, AlertCircle, Copy, Save, ExternalLink } from "lucide-react";
+import { CheckCircle2, AlertCircle, Copy, Save, ExternalLink, RefreshCw } from "lucide-react";
+
+type ShopMyStatus = "loading" | "ok" | "not_configured" | "error";
 
 export default function LtkAuthPage() {
   const [token, setToken] = useState("");
   const [saved, setSaved] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [shopmyStatus, setShopmyStatus] = useState<ShopMyStatus>("loading");
+  const [shopmyMessage, setShopmyMessage] = useState("");
+
+  const checkShopMy = useCallback(() => {
+    setShopmyStatus("loading");
+    fetch("/api/v1/settings/shopmy-session")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.ok) {
+          setShopmyStatus("ok");
+          setShopmyMessage(d.message ?? "Session OK");
+        } else if (d.message?.includes("not set")) {
+          setShopmyStatus("not_configured");
+          setShopmyMessage(d.message ?? "Not configured");
+        } else {
+          setShopmyStatus("error");
+          setShopmyMessage(d.message ?? "Login failed");
+        }
+      })
+      .catch(() => {
+        setShopmyStatus("error");
+        setShopmyMessage("Request failed");
+      });
+  }, []);
+
+  useEffect(() => {
+    checkShopMy();
+  }, [checkShopMy]);
 
   const extractionScript = `(function(){const c=document.cookie.split(';').filter(x=>x.includes('auth')||x.includes('token')||x.includes('ltk')).map(x=>x.trim());c.forEach(x=>console.log(x));const l=Object.keys(localStorage).filter(k=>k.includes('auth')||k.includes('token'));l.forEach(k=>console.log(k+'='+localStorage.getItem(k)));return c.length>0||l.length>0?'Found tokens - check console':'No tokens found';})();`;
 
@@ -32,16 +62,48 @@ export default function LtkAuthPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">LTK Authentication</h1>
-        <p className="text-sm text-gray-500 mt-0.5">
-          Extract your LTK auth tokens to enable automated scraping
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">LTK Authentication</h1>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+          ShopMy API (programmatic) and browser token extraction for LTK
         </p>
       </div>
 
-      <Card className="p-6">
+      <Card className="p-6 bg-card border-border">
+        <h3 className="font-semibold mb-2 text-gray-900 dark:text-gray-100">ShopMy API (programmatic)</h3>
+        <p className="text-sm text-muted-foreground mb-3">
+          Set <code className="bg-muted px-1 rounded text-xs">SHOPMY_EMAIL</code> and{" "}
+          <code className="bg-muted px-1 rounded text-xs">SHOPMY_PASSWORD</code> in your <code className="bg-muted px-1 rounded text-xs">.env</code> to use the apiv3.shopmy.us session API.
+        </p>
+        <div className="flex items-center gap-2 flex-wrap">
+          {shopmyStatus === "loading" && (
+            <Badge variant="secondary">Checking…</Badge>
+          )}
+          {shopmyStatus === "ok" && (
+            <Badge className="bg-green-600 hover:bg-green-600">
+              <CheckCircle2 className="h-3 w-3 mr-1" aria-hidden /> Session OK
+            </Badge>
+          )}
+          {shopmyStatus === "not_configured" && (
+            <Badge variant="secondary">
+              <AlertCircle className="h-3 w-3 mr-1" aria-hidden /> Not configured
+            </Badge>
+          )}
+          {shopmyStatus === "error" && (
+            <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
+              <AlertCircle className="h-3 w-3 mr-1" aria-hidden /> {shopmyMessage}
+            </Badge>
+          )}
+          <Button variant="ghost" size="sm" onClick={checkShopMy} aria-label="Recheck ShopMy session">
+            <RefreshCw className="h-4 w-4" aria-hidden />
+          </Button>
+        </div>
+      </Card>
+
+      <Card className="p-6 bg-card border-border">
         <div className="space-y-6">
           <div>
-            <h3 className="font-semibold mb-3">Step 1: Extract Token</h3>
+            <h3 className="font-semibold mb-3 text-gray-900 dark:text-gray-100">Browser token (fallback)</h3>
+            <p className="text-sm text-muted-foreground mb-3">For creator.shopltk.com and api-gateway.shopltk.com scraping.</p>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
               <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
                 <li>

@@ -14,10 +14,22 @@
     --border: #e5e7eb;
     --radius: 0.75rem;
   }
+  .dark {
+    --background: #111827;
+    --foreground: #f9fafb;
+    --card: #1f2937;
+    --card-foreground: #f9fafb;
+    --muted: #374151;
+    --muted-foreground: #9ca3af;
+    --accent: #60a5fa;
+    --border: #374151;
+  }
   html {
     scroll-behavior: smooth;
   }
   body {
     @apply antialiased;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }

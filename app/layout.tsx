@@ -38,7 +38,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var d=document.documentElement;var s=localStorage.getItem("creative-pulse-theme");var m=window.matchMedia("(prefers-color-scheme: dark)");if(s==="dark"||(s!=="light"&&m.matches))d.classList.add("dark");else d.classList.remove("dark");})();`,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-background text-foreground">
         {hasClerk ? (
           <ClerkProvider>

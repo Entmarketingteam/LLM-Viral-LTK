@@ -29,12 +29,12 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex w-56 flex-col border-r border-gray-200 bg-white">
-      <div className="flex h-14 items-center gap-2 border-b border-gray-200 px-4">
-        <ImageIcon className="h-6 w-6 text-blue-600" />
-        <span className="font-semibold text-gray-900">Creative Pulse</span>
+    <aside className="flex w-56 flex-col border-r border-border bg-card">
+      <div className="flex h-14 items-center gap-2 border-b border-border px-4">
+        <ImageIcon className="h-6 w-6 text-accent" aria-hidden />
+        <span className="font-semibold text-card-foreground">Creative Pulse</span>
       </div>
-      <nav className="flex-1 gap-1 p-3">
+      <nav className="flex-1 gap-1 p-3" aria-label="Main navigation">
         {nav.map(({ href, label, icon: Icon }) => {
           const isActive = pathname === href || (href !== "/dashboard" && pathname.startsWith(href));
           return (
@@ -44,19 +44,19 @@ export function Sidebar() {
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-blue-50 text-blue-700"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  ? "bg-accent/10 text-accent dark:bg-accent/20 dark:text-accent"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
+              aria-current={isActive ? "page" : undefined}
             >
-              <Icon className="h-4 w-4 shrink-0" />
+              <Icon className="h-4 w-4 shrink-0" aria-hidden />
               {label}
             </Link>
           );
         })}
-        
-        <div className="mt-4 pt-4 border-t border-gray-200">
+        <div className="mt-4 pt-4 border-t border-border">
           <div className="px-3 mb-2">
-            <span className="text-xs font-semibold text-gray-500 uppercase">Settings</span>
+            <span className="text-xs font-semibold text-muted-foreground uppercase">Settings</span>
           </div>
           {settingsNav.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href || pathname.startsWith(href);
@@ -67,11 +67,12 @@ export function Sidebar() {
                 className={cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                   isActive
-                    ? "bg-blue-50 text-blue-700"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    ? "bg-accent/10 text-accent dark:bg-accent/20 dark:text-accent"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
+                aria-current={isActive ? "page" : undefined}
               >
-                <Icon className="h-4 w-4 shrink-0" />
+                <Icon className="h-4 w-4 shrink-0" aria-hidden />
                 {label}
               </Link>
             );

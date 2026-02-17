@@ -25,6 +25,7 @@
     "check:status": "./scripts/check-status.sh",
     "ltk:extract-auth": "tsx scripts/ltk-auth-extractor.ts",
     "ltk:extract-auth:login": "tsx scripts/ltk-auth-extractor.ts --wait-for-login --save-to-env",
+    "shopmy:test": "tsx scripts/test-shopmy-auth.ts",
     "deploy:infra": "./scripts/setup-cloud-infra.sh",
     "deploy:worker": "cd workers/analysis && ./deploy.sh"
   },
