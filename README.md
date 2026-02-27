@@ -125,7 +125,7 @@ When BigQuery isn't configured (missing `GOOGLE_*` env vars), the app automatica
 - **Creative Detail**: Works for `mock_demo_1`, `mock_demo_2`, `mock_demo_3`
 - **Dashboard Stats**: Returns zeros/null (no real aggregates)
 
-This lets you explore the UI without setting up GCP. See `CURRENT_STATUS.md` for details.
+This lets you explore the UI without setting up GCP. See `docs/CURRENT_STATUS.md` for details.
 
 ## Setup BigQuery (for Real Data)
 
@@ -172,7 +172,7 @@ npm run db:verify        # Verify BigQuery connection
 2. Add environment variables in Vercel dashboard (same as `.env`)
 3. Deploy automatically on push to `main`
 
-See `CURRENT_STATUS.md` for deployment status.
+See `docs/CURRENT_STATUS.md` for deployment status.
 
 ## Tech Stack
 
@@ -187,7 +187,7 @@ See `CURRENT_STATUS.md` for deployment status.
 
 ## Documentation
 
-- `CURRENT_STATUS.md` - What works now, what needs setup
-- `DASHBOARD_BUILD_PLAN.md` - Dashboard implementation plan
-- `NEXT_STEPS.md` - Next steps for development
-- `DEPLOYED.md` - Deployment status and URLs
+- `docs/CURRENT_STATUS.md` - What works now, what needs setup
+- `docs/DASHBOARD_BUILD_PLAN.md` - Dashboard implementation plan
+- `docs/NEXT_STEPS.md` - Next steps for development
+- `docs/DEPLOYED.md` - Deployment status and URLs
