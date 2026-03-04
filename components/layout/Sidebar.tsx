@@ -11,6 +11,7 @@ import {
   GitCompare,
   ImageIcon,
   Settings,
+  Megaphone,
 } from "lucide-react";
 
 const nav = [
@@ -19,6 +20,7 @@ const nav = [
   { href: "/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/search", label: "Search", icon: Search },
   { href: "/compare", label: "Compare", icon: GitCompare },
+  { href: "/lead-gen", label: "Lead Gen", icon: Megaphone },
 ] as const;
 
 const settingsNav = [
