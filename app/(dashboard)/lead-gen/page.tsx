@@ -5,6 +5,36 @@ import { useState } from 'react';
 type Tab = 'proposal' | 'outreach' | 'audit' | 'score' | 'pitch-deck';
 type OutputFormat = 'html' | 'json';
 
+interface ImportedCreator {
+  name: string;
+  category: string;
+  username?: string;
+  percentage?: number;
+  tier?: string;
+  lane?: string;
+  outreachPriority?: number;
+}
+
+interface SheetImportState {
+  loading: boolean;
+  sheetUrl: string;
+  tab: string;
+  result: {
+    spreadsheetTitle?: string;
+    tabs?: string[];
+    totalRows?: number;
+    importedRows?: number;
+    columnMapping?: Record<string, string>;
+    unmappedColumns?: string[];
+    prospects?: Array<Record<string, unknown>>;
+    scoring?: {
+      tiers: Record<string, number>;
+      creators: ImportedCreator[];
+    };
+  } | null;
+  error: string | null;
+}
+
 interface ProspectForm {
   name: string;
   username: string;
@@ -57,6 +87,67 @@ export default function LeadGenPage() {
   const [result, setResult] = useState<{ html?: string; json?: Record<string, unknown> } | null>(null);
   const [outputFormat, setOutputFormat] = useState<OutputFormat>('html');
   const [error, setError] = useState<string | null>(null);
+  const [sheetImport, setSheetImport] = useState<SheetImportState>({
+    loading: false,
+    sheetUrl: '',
+    tab: '',
+    result: null,
+    error: null,
+  });
+
+  const handleImportSheet = async () => {
+    if (!sheetImport.sheetUrl) {
+      setSheetImport((prev) => ({ ...prev, error: 'Enter a Google Sheets URL or ID' }));
+      return;
+    }
+
+    setSheetImport((prev) => ({ ...prev, loading: true, error: null, result: null }));
+
+    try {
+      const res = await fetch('/api/v1/lead-gen/import-sheet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sheetUrl: sheetImport.sheetUrl,
+          tab: sheetImport.tab || undefined,
+          generate: true,
+        }),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || `Import failed: ${res.status}`);
+      }
+
+      const data = await res.json();
+      setSheetImport((prev) => ({ ...prev, result: data, loading: false }));
+    } catch (err) {
+      setSheetImport((prev) => ({
+        ...prev,
+        error: err instanceof Error ? err.message : 'Import failed',
+        loading: false,
+      }));
+    }
+  };
+
+  const handleSelectCreator = (creator: ImportedCreator) => {
+    setForm({
+      name: creator.name || '',
+      username: creator.username || '',
+      category: creator.category || 'Lifestyle',
+      instagramFollowers: '',
+      ltkUrl: '',
+      ltkActive: false,
+      ltkBoardCount: '',
+      amazonStorefront: false,
+      contentStyle: '',
+      painPoints: '',
+      brandPartners: '',
+      email: '',
+      notes: `Imported from sheet — Score: ${creator.percentage || '?'}% (${creator.tier || '?'}) — Lane: ${creator.lane || '?'}`,
+    });
+    setResult(null);
+  };
 
   const updateForm = (field: keyof ProspectForm, value: string | boolean) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -177,6 +268,136 @@ export default function LeadGenPage() {
               {tab.label}
             </button>
           ))}
+        </div>
+
+        {/* Google Sheets Import */}
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-8">
+          <h2 className="text-lg font-semibold text-white mb-4">Import from Google Sheets</h2>
+          <div className="flex gap-3 items-end">
+            <div className="flex-1">
+              <label className="block text-xs text-gray-400 mb-1">Google Sheet URL or ID</label>
+              <input
+                type="text"
+                value={sheetImport.sheetUrl}
+                onChange={(e) => setSheetImport((prev) => ({ ...prev, sheetUrl: e.target.value }))}
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                placeholder="https://docs.google.com/spreadsheets/d/... or sheet ID"
+              />
+            </div>
+            <div className="w-40">
+              <label className="block text-xs text-gray-400 mb-1">Tab (optional)</label>
+              <input
+                type="text"
+                value={sheetImport.tab}
+                onChange={(e) => setSheetImport((prev) => ({ ...prev, tab: e.target.value }))}
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                placeholder="Sheet1"
+              />
+            </div>
+            <button
+              onClick={handleImportSheet}
+              disabled={sheetImport.loading}
+              className="px-6 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 text-white font-medium rounded-lg text-sm whitespace-nowrap"
+            >
+              {sheetImport.loading ? 'Importing...' : 'Import & Score'}
+            </button>
+          </div>
+
+          {sheetImport.error && (
+            <div className="mt-3 bg-red-950 border border-red-800 rounded-lg px-3 py-2 text-sm text-red-300">
+              {sheetImport.error}
+            </div>
+          )}
+
+          {sheetImport.result && (
+            <div className="mt-4">
+              <div className="flex items-center gap-4 mb-3">
+                <span className="text-sm text-white font-medium">{sheetImport.result.spreadsheetTitle}</span>
+                <span className="text-xs text-gray-500">{sheetImport.result.importedRows} of {sheetImport.result.totalRows} rows imported</span>
+                {sheetImport.result.tabs && (
+                  <span className="text-xs text-gray-500">Tabs: {sheetImport.result.tabs.join(', ')}</span>
+                )}
+              </div>
+
+              {/* Column mapping info */}
+              {sheetImport.result.columnMapping && (
+                <details className="mb-3">
+                  <summary className="text-xs text-gray-400 cursor-pointer hover:text-gray-300">
+                    Column mapping ({Object.keys(sheetImport.result.columnMapping).length} mapped
+                    {sheetImport.result.unmappedColumns && sheetImport.result.unmappedColumns.length > 0
+                      ? `, ${sheetImport.result.unmappedColumns.length} unmapped`
+                      : ''})
+                  </summary>
+                  <div className="mt-2 grid grid-cols-2 gap-1 text-xs">
+                    {Object.entries(sheetImport.result.columnMapping).map(([header, field]) => (
+                      <div key={header} className="text-gray-500">
+                        <span className="text-gray-400">{header}</span> → <span className="text-blue-400">{field}</span>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              )}
+
+              {/* Scoring tiers */}
+              {sheetImport.result.scoring && (
+                <div className="flex gap-3 mb-4">
+                  {Object.entries(sheetImport.result.scoring.tiers).map(([tier, count]) => (
+                    <div key={tier} className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-center min-w-[70px]">
+                      <div className={`text-lg font-bold ${
+                        tier === 'hot' ? 'text-red-400' :
+                        tier === 'warm' ? 'text-yellow-400' :
+                        tier === 'cold' ? 'text-blue-400' : 'text-gray-400'
+                      }`}>{count}</div>
+                      <div className="text-xs text-gray-500 capitalize">{tier}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Creator list */}
+              {sheetImport.result.scoring?.creators && (
+                <div className="max-h-60 overflow-y-auto border border-gray-800 rounded-lg">
+                  <table className="w-full text-xs">
+                    <thead className="bg-gray-800 sticky top-0">
+                      <tr>
+                        <th className="text-left px-3 py-2 text-gray-400">Name</th>
+                        <th className="text-left px-3 py-2 text-gray-400">Category</th>
+                        <th className="text-left px-3 py-2 text-gray-400">Score</th>
+                        <th className="text-left px-3 py-2 text-gray-400">Tier</th>
+                        <th className="text-left px-3 py-2 text-gray-400">Lane</th>
+                        <th className="px-3 py-2"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sheetImport.result.scoring.creators.map((c, i) => (
+                        <tr key={i} className="border-t border-gray-800 hover:bg-gray-800/50">
+                          <td className="px-3 py-2 text-white font-medium">{c.name}</td>
+                          <td className="px-3 py-2 text-gray-400">{c.category}</td>
+                          <td className="px-3 py-2">
+                            <span className={
+                              (c.percentage || 0) >= 70 ? 'text-red-400' :
+                              (c.percentage || 0) >= 45 ? 'text-yellow-400' :
+                              'text-blue-400'
+                            }>{c.percentage}%</span>
+                          </td>
+                          <td className="px-3 py-2 capitalize text-gray-400">{c.tier}</td>
+                          <td className="px-3 py-2 text-gray-500 uppercase text-[10px]">{c.lane}</td>
+                          <td className="px-3 py-2">
+                            <button
+                              onClick={() => handleSelectCreator(c)}
+                              className="text-blue-400 hover:text-blue-300"
+                            >
+                              Select
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

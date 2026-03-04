@@ -36,7 +36,9 @@
     "lead-gen:screenshots": "tsx tools/lead-gen/screenshot-automation.ts",
     "lead-gen:instagram": "tsx tools/lead-gen/instagram-fetcher.ts",
     "lead-gen:auto-reply": "tsx tools/lead-gen/auto-reply-pipeline.ts",
-    "lead-gen:auto-reply:demo": "tsx tools/lead-gen/auto-reply-pipeline.ts --demo"
+    "lead-gen:auto-reply:demo": "tsx tools/lead-gen/auto-reply-pipeline.ts --demo",
+    "lead-gen:import": "tsx tools/lead-gen/sheets-importer.ts",
+    "lead-gen:import:generate": "tsx tools/lead-gen/sheets-importer.ts --generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.0",

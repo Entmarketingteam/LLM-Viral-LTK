@@ -33,6 +33,7 @@ export { captureCreatorScreenshots, screenshotLTKStorefront, screenshotInstagram
 export { runCreatorResearch, batchResearchCreators } from './creator-research-engine';
 export { generateVisualPitchDeck } from './visual-pitch-deck';
 export { runAutoReplyPipeline, batchAutoReply } from './auto-reply-pipeline';
+export { importFromGoogleSheets, listSheetTabs, extractSheetId } from './sheets-importer';
 export * from './types';
 export * from './deliverables-library';
 
