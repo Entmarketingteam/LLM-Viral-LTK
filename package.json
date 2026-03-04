@@ -31,7 +31,12 @@
     "lead-gen": "tsx tools/lead-gen/index.ts",
     "lead-gen:demo": "tsx tools/lead-gen/index.ts --demo",
     "lead-gen:prospect": "tsx tools/lead-gen/index.ts --prospect",
-    "lead-gen:batch": "tsx tools/lead-gen/index.ts --spreadsheet"
+    "lead-gen:batch": "tsx tools/lead-gen/index.ts --spreadsheet",
+    "lead-gen:research": "tsx tools/lead-gen/creator-research-engine.ts",
+    "lead-gen:screenshots": "tsx tools/lead-gen/screenshot-automation.ts",
+    "lead-gen:instagram": "tsx tools/lead-gen/instagram-fetcher.ts",
+    "lead-gen:auto-reply": "tsx tools/lead-gen/auto-reply-pipeline.ts",
+    "lead-gen:auto-reply:demo": "tsx tools/lead-gen/auto-reply-pipeline.ts --demo"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.0",

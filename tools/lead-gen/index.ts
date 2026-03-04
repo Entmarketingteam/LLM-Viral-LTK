@@ -28,6 +28,11 @@ export { generateAudit } from './audit-generator';
 export { generatePitchDeck } from './pitch-deck-generator';
 export { generateStrategy, determineGrowthLane } from './proposal-brain';
 export { scoreCreator, batchScoreCreators, renderScoreCardHTML, renderBatchReportHTML } from './signal-scorer';
+export { researchCreator, fetchCreatorProfile, fetchCreatorPosts } from './instagram-fetcher';
+export { captureCreatorScreenshots, screenshotLTKStorefront, screenshotInstagramProfile } from './screenshot-automation';
+export { runCreatorResearch, batchResearchCreators } from './creator-research-engine';
+export { generateVisualPitchDeck } from './visual-pitch-deck';
+export { runAutoReplyPipeline, batchAutoReply } from './auto-reply-pipeline';
 export * from './types';
 export * from './deliverables-library';
 
